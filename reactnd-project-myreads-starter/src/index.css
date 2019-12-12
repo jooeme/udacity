@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.list-books-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background: #f58094;
+}
+
+.list-books-content {
+  margin-top: 100px;
+}
+
+.open-search a {
+  background: #f58094;
+  background-image: url(/static/media/add.75d390e5.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+}
+
+.book-shelf-changer {
+  background: pink;
+  background-image: url(/static/media/arrow-drop-down.9d4e3f36.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+
+.books-grid{
+  justify-content: flex-start;
+}
