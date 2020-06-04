@@ -1,17 +1,17 @@
-import React from "react";
-import Place from "./Place";
-import PropTypes from "prop-types";
+import React from 'react';
+import Place from './Place';
+import PropTypes from 'prop-types';
 
 class PlacesList extends React.Component {
   static propTypes = {
     places: PropTypes.array.isRequired,
     showInfoWin: PropTypes.func.isRequired,
-    hideInfoWin: PropTypes.func.isRequired
+    hideInfoWin: PropTypes.func.isRequired,
   };
 
   state = {
-    query: "",
-    foundPlaces: []
+    query: '',
+    foundPlaces: [],
   };
 
   componentWillMount() {
@@ -22,14 +22,14 @@ class PlacesList extends React.Component {
   searchResults(ev) {
     this.props.hideInfoWin();
     this.setState({ foundPlaces: this.props.places });
-    this.state.foundPlaces.forEach(place => {
+    this.state.foundPlaces.forEach((place) => {
       place.marker.setVisible(false);
     });
     const query = ev.target.value.toLowerCase();
-    var foundPlaces = this.props.places.filter(place => {
+    var foundPlaces = this.props.places.filter((place) => {
       return place.name.toLowerCase().includes(query);
     });
-    foundPlaces.forEach(place => {
+    foundPlaces.forEach((place) => {
       place.marker.setVisible(true);
     });
     this.setState({ foundPlaces });
@@ -37,17 +37,17 @@ class PlacesList extends React.Component {
 
   render() {
     return (
-      <div id="locations-list">
+      <div id='locations-list'>
         <input
-          tabIndex="1"
-          id="search"
-          role="search"
-          aria-label="search places"
-          placeholder="Search"
-          onChange={ev => this.searchResults(ev)}
+          tabIndex='1'
+          id='search'
+          role='search'
+          aria-label='search places'
+          placeholder='Search'
+          onChange={(ev) => this.searchResults(ev)}
         />
 
-        <ul tabIndex="2" className="element-box">
+        <ul tabIndex='2' className='element-box'>
           {this.state.foundPlaces.map((place, idx) => (
             <Place
               place={place}

@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Place extends React.Component {
   static propTypes = {
     place: PropTypes.object.isRequired,
-    showInfoWin: PropTypes.func.isRequired
+    showInfoWin: PropTypes.func.isRequired,
   };
 
   render() {
@@ -12,9 +12,9 @@ class Place extends React.Component {
 
     return (
       <li
-        tabIndex="3"
-        role="button"
-        className="element"
+        tabIndex='3'
+        role='button'
+        className='element'
         key={this.props.index}
         onClick={() => this.props.showInfoWin(place.marker)}
         onKeyPress={() => this.props.showInfoWin(place.marker)}
