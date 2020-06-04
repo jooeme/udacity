@@ -1,4 +1,4 @@
-// 这是我们的玩家要躲避的敌人 
+// 这是我们的玩家要躲避的敌人
 var Enemy = function (x, y) {
   // 要应用到每个敌人的实例的变量写在这里
   // 我们已经提供了一个来帮助你实现更多
@@ -32,8 +32,6 @@ Enemy.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-
-
 // 现在实现你自己的玩家类
 // 这个类需要一个 update() 函数， render() 函数和一个 handleInput()函数
 var Player = function (x, y) {
@@ -42,17 +40,16 @@ var Player = function (x, y) {
   this.x = x;
   //自己的纵向坐标 -jooe
   this.y = y;
-}
-
+};
 
 Player.prototype.update = function () {
-  //碰撞判断 -jooe 
+  //碰撞判断 -jooe
   //用for-of循环数组
   for (let allEnemie of allEnemies) {
     //判断自己和敌人x坐标的重合度
     if (Math.abs(this.x - allEnemie.x) < 78) {
       //判断自己和敌人y坐标的重合度
-      if ((Math.abs(this.y - allEnemie.y)) < 42.5) {
+      if (Math.abs(this.y - allEnemie.y) < 42.5) {
         //x，y全部重合，执行下面的条件
         alert(`被虫子撞到了，重新开始吧！`);
         this.x = 101 * 2;
@@ -60,12 +57,11 @@ Player.prototype.update = function () {
       }
     }
   }
-}
-
+};
 
 Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function (keyup) {
   //根据按键来判断人物怎么移动 -jooe
@@ -85,7 +81,7 @@ Player.prototype.handleInput = function (keyup) {
         if (this.y < 70) {
           alert(`恭喜您，顺利通过了虫子大军！！！`);
         }
-        console.log(this.y)
+        console.log(this.y);
       } else {
         alert(`你都已经胜利！！！ 还往上面跑干嘛，直接下去重新来吧！！！`);
         this.y = 83 * 4 + 70;
@@ -106,7 +102,7 @@ Player.prototype.handleInput = function (keyup) {
       }
       break;
   }
-}
+};
 
 // 现在实例化你的所有对象
 // 把所有敌人的对象都放进一个叫 allEnemies 的数组里面
@@ -117,7 +113,6 @@ var enemy2 = new Enemy(50, 2);
 var allEnemies = [enemy, enemy1, enemy2];
 var player = new Player(101 * 2, 83 * 3 + 70);
 
-
 // 这段代码监听游戏玩家的键盘点击事件并且代表将按键的关键数字送到 Player.handleInput()
 // 方法里面。你不需要再更改这段代码了。
 document.addEventListener('keyup', function (e) {
@@ -125,7 +120,7 @@ document.addEventListener('keyup', function (e) {
     37: 'left',
     38: 'up',
     39: 'right',
-    40: 'down'
+    40: 'down',
   };
 
   player.handleInput(allowedKeys[e.keyCode]);
