@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import * as BooksAPI from "./BooksAPI";
-import Book from "./Book";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import Book from './Book';
 
 export default class Search extends Component {
   state = {
-    query: "",
-    searchBooks: []
+    query: '',
+    searchBooks: [],
   };
 
-  serarchBooks = query => {
+  serarchBooks = (query) => {
     if (!query) {
       this.setState({
-        query: "",
-        searchBooks: []
+        query: '',
+        searchBooks: [],
       });
     } else {
       this.setState({
-        query: query
+        query: query,
       });
-      BooksAPI.search(query).then(books => {
+      BooksAPI.search(query).then((books) => {
         if (books.error) {
           books = [];
           console.log(`坑爹的报错了`);
         }
-        books.map(book =>
+        books.map((book) =>
           this.props.books
-            .filter(b => b.id === book.id)
-            .map(b => (book.shelf = b.shelf))
+            .filter((b) => b.id === book.id)
+            .map((b) => (book.shelf = b.shelf))
         );
         this.setState({
-          searchBooks: books
+          searchBooks: books,
         });
       });
     }
@@ -38,12 +38,12 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div className="search-books">
-        <div className="search-books-bar">
-          <Link to="/" className="close-search">
+      <div className='search-books'>
+        <div className='search-books-bar'>
+          <Link to='/' className='close-search'>
             Close
           </Link>
-          <div className="search-books-input-wrapper">
+          <div className='search-books-input-wrapper'>
             {/*
                   注意: BooksAPI的搜索仅限于一些特定的词汇。
                   你可以在此找到它们:
@@ -52,17 +52,17 @@ export default class Search extends Component {
                   然而，请记住，BooksAPI.search方法可以通过标题或者作者搜索。所以，如果你没有找到一个具体的作者或者头衔也不用担心。每次搜索都受到 SEARCH_TERMS 的限制。
                 */}
             <input
-              type="text"
-              placeholder="Search by title or author"
-              onChange={event =>
+              type='text'
+              placeholder='Search by title or author'
+              onChange={(event) =>
                 this.serarchBooks(event.currentTarget.value.trim())
               }
             />
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid">
-            {this.state.searchBooks.map(book => (
+        <div className='search-books-results'>
+          <ol className='books-grid'>
+            {this.state.searchBooks.map((book) => (
               <Book
                 onMoveBook={this.props.onMoveUpdate}
                 key={book.id}
